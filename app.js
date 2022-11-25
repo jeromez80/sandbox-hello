@@ -32,3 +32,11 @@ app.use("/",router)
 app.listen((3000),()=>{
     console.log("Server is Running on port 3000")
 })
+
+const engine = require('engine.io');
+const server = engine.listen(8000);
+
+server.on('connection', socket => {
+  socket.send('utf 8 string');
+  socket.send(Buffer.from([0, 1, 2, 3, 4, 5])); // binary data
+});
